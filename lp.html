@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超営業 ｜ 営業を「エースの匠」から「構造による仕組み」に</title>
+    <meta name="description" content="案件はあるのに受注率が安定しない。その原因は営業力ではなく、営業の仕組みの欠落です。超営業は属人化した営業プロセスを再現性ある構造へ設計し直す伴走支援。グケン株式会社が提供します。">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-soft: #f6f7f9;
+            --color-bg-strong: #0f2545;
+            --color-text: #1a1f2b;
+            --color-text-soft: #4b5565;
+            --color-text-invert: #ffffff;
+            --color-line: #e3e6ec;
+            --color-accent: #1e5fbf;
+            --color-accent-deep: #143f80;
+            --color-accent-soft: #eaf1fb;
+            --color-warn: #c45a3b;
+            --color-warn-soft: #fbe9e2;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow: 0 8px 24px rgba(20, 40, 80, 0.06);
+            --shadow-lg: 0 16px 40px rgba(20, 40, 80, 0.10);
+            --max-width: 1120px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        html { scroll-behavior: smooth; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 96px 0;
+        }
+        .section.alt { background: var(--color-bg-soft); }
+        .section-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section h2 {
+            font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+            line-height: 1.5;
+            font-weight: 700;
+            margin: 0 0 16px;
+            color: var(--color-text);
+        }
+        .section-lead {
+            color: var(--color-text-soft);
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* ---------- Header ---------- */
+        .site-header {
+            border-bottom: 1px solid var(--color-line);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: saturate(180%) blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .site-header .inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo img { height: 36px; width: auto; }
+        .logo .brand {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--color-text);
+        }
+        .logo .brand .accent { color: var(--color-accent); }
+        .nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav a {
+            color: var(--color-text-soft);
+            font-size: 0.95rem;
+        }
+        .nav a:hover { color: var(--color-accent); }
+        .nav .btn-cta-sm {
+            background: var(--color-accent);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav .btn-cta-sm:hover { background: var(--color-accent-deep); color: #fff; }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(30, 95, 191, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--color-accent-deep);
+            transform: translateY(-1px);
+            color: #fff;
+        }
+        .btn-secondary {
+            background: #fff;
+            color: var(--color-accent);
+            border-color: var(--color-line);
+        }
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent-deep);
+        }
+        .btn-lg {
+            padding: 20px 36px;
+            font-size: 1.05rem;
+        }
+        .btn-on-dark {
+            background: #fff;
+            color: var(--color-accent);
+        }
+        .btn-on-dark:hover {
+            background: var(--color-accent-soft);
+            color: var(--color-accent-deep);
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 96px 0 88px;
+            background:
+                radial-gradient(1200px 400px at 80% -10%, var(--color-accent-soft) 0%, transparent 60%),
+                var(--color-bg);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--color-accent);
+            background: var(--color-accent-soft);
+            padding: 6px 12px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 3.6vw, 3rem);
+            line-height: 1.45;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            margin: 0 0 28px;
+            color: var(--color-text);
+        }
+        .hero h1 .em {
+            color: var(--color-accent);
+            background: linear-gradient(transparent 65%, var(--color-accent-soft) 65%);
+            padding: 0 4px;
+        }
+        .hero .lead {
+            font-size: 1.05rem;
+            color: var(--color-text-soft);
+            margin: 0 0 36px;
+            max-width: 560px;
+        }
+        .cta-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .cta-note {
+            font-size: 0.85rem;
+            color: var(--color-text-soft);
+            margin-top: 16px;
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .hero-visual h3 {
+            font-size: 0.9rem;
+            color: var(--color-text-soft);
+            font-weight: 600;
+            margin: 0 0 20px;
+            letter-spacing: 0.06em;
+        }
+        .pipeline { display: flex; flex-direction: column; gap: 12px; }
+        .pipeline-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--color-bg-soft);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--color-accent);
+            font-size: 0.95rem;
+            color: var(--color-text);
+        }
+        .pipeline-item .num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .pipeline-item.muted {
+            background: #fafbfc;
+            border-left-color: var(--color-line);
+            color: var(--color-text-soft);
+        }
+        .pipeline-item.muted .num { background: #c8cdd6; }
+
+        /* ---------- Trust strip ---------- */
+        .trust {
+            border-top: 1px solid var(--color-line);
+            border-bottom: 1px solid var(--color-line);
+            background: var(--color-bg-soft);
+            padding: 24px 0;
+        }
+        .trust .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--color-text-soft);
+            font-size: 0.9rem;
+        }
+        .trust strong { color: var(--color-text); }
+
+        /* ---------- Problem section ---------- */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .problem-card {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .problem-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .problem-card .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--color-warn-soft);
+            color: var(--color-warn);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .problem-card h3 {
+            font-size: 1.05rem;
+            margin: 0 0 8px;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+        .problem-card p {
+            font-size: 0.92rem;
+            color: var(--color-text-soft);
+            margin: 0;
+        }
+        .problem-summary {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 1.05rem;
+            color: var(--color-text);
+        }
+        .problem-summary strong { color: var(--color-accent); }
+
+        /* ---------- Change (Before/After) ---------- */
+        .change-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+        .change-col {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+        .change-col.before { background: var(--color-bg-soft); }
+        .change-col.after {
+            border-color: var(--color-accent);
+            box-shadow: 0 12px 32px rgba(30, 95, 191, 0.12);
+        }
+        .change-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+        .change-col.before .change-tag {
+            background: #e3e6ec;
+            color: var(--color-text-soft);
+        }
+        .change-col.after .change-tag {
+            background: var(--color-accent);
+            color: #fff;
+        }
+        .change-col h3 {
+            font-size: 1.2rem;
+            margin: 0 0 16px;
+        }
+        .change-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .change-col li {
+            font-size: 0.98rem;
+            color: var(--color-text-soft);
+            padding-left: 24px;
+            position: relative;
+        }
+        .change-col.before li::before {
+            content: "×";
+            position: absolute;
+            left: 0;
+            color: #b0b6c2;
+            font-weight: 700;
+        }
+        .change-col.after li {
+            color: var(--color-text);
+        }
+        .change-col.after li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+        .change-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+
+        /* ---------- Service (3 steps) ---------- */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            text-align: left;
+            position: relative;
+        }
+        .service-card .step {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+        }
+        .service-card .step-num {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin: 0 0 12px;
+            color: var(--color-text);
+        }
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--color-text-soft);
+            margin: 0;
+        }
+
+        /* ---------- Philosophy (quote) ---------- */
+        .philosophy {
+            background: var(--color-bg-strong);
+            color: var(--color-text-invert);
+            padding: 96px 0;
+        }
+        .philosophy .container { max-width: 820px; }
+        .philosophy .section-eyebrow { color: #8eb4ec; }
+        .philosophy h2 {
+            color: #fff;
+            text-align: center;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            line-height: 1.5;
+        }
+        .philosophy blockquote {
+            margin: 40px 0 0;
+            padding: 0;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #d6e0ee;
+            text-align: center;
+        }
+        .philosophy blockquote .em {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ---------- Case studies ---------- */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+        .case-card {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow);
+        }
+        .case-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .case-tag {
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--color-accent-soft);
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .case-card h3 {
+            font-size: 1.15rem;
+            margin: 0 0 16px;
+            line-height: 1.5;
+        }
+        .case-stats {
+            display: flex;
+            gap: 24px;
+            margin: 20px 0;
+            padding: 20px 0;
+            border-top: 1px solid var(--color-line);
+            border-bottom: 1px solid var(--color-line);
+        }
+        .case-stat .num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1.2;
+        }
+        .case-stat .label {
+            font-size: 0.82rem;
+            color: var(--color-text-soft);
+        }
+        .case-quote {
+            font-size: 0.95rem;
+            color: var(--color-text-soft);
+            line-height: 1.8;
+            margin: 0;
+            font-style: normal;
+        }
+        .case-quote::before {
+            content: "「";
+            color: var(--color-accent);
+        }
+        .case-quote::after {
+            content: "」";
+            color: var(--color-accent);
+        }
+
+        /* ---------- CTA mid band ---------- */
+        .cta-band {
+            background: var(--color-accent-soft);
+            padding: 56px 0;
+        }
+        .cta-band .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .cta-band h3 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+        .cta-band p {
+            margin: 4px 0 0;
+            font-size: 0.95rem;
+            color: var(--color-text-soft);
+        }
+
+        /* ---------- CTA final ---------- */
+        .cta-final {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+            color: #fff;
+            padding: 96px 0;
+            text-align: center;
+        }
+        .cta-final h2 {
+            color: #fff;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            margin: 0 0 16px;
+            line-height: 1.5;
+        }
+        .cta-final p {
+            color: #d6e0ee;
+            font-size: 1.05rem;
+            margin: 0 0 36px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-final-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            background: var(--color-bg-strong);
+            color: #aab4c4;
+            padding: 56px 0 32px;
+        }
+        .site-footer .inner {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 32px;
+        }
+        .site-footer .logo img { height: 44px; filter: brightness(0) invert(1); }
+        .site-footer .brand { color: #fff; }
+        .site-footer .company-info {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #aab4c4;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #aab4c4;
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover { color: #fff; }
+        .copyright {
+            border-top: 1px solid #1f3458;
+            padding-top: 24px;
+            font-size: 0.82rem;
+            color: #6b7896;
+            text-align: center;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 880px) {
+            .section { padding: 64px 0; }
+            .section-head { margin-bottom: 40px; }
+            .hero { padding: 64px 0 56px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .nav a:not(.btn-cta-sm) { display: none; }
+            .problem-grid { grid-template-columns: repeat(2, 1fr); }
+            .change-grid { grid-template-columns: 1fr; }
+            .change-arrow { transform: rotate(90deg); padding: 8px 0; }
+            .service-grid { grid-template-columns: 1fr; }
+            .case-grid { grid-template-columns: 1fr; }
+            .cta-band .inner { flex-direction: column; align-items: flex-start; }
+            .site-footer .inner { grid-template-columns: 1fr; }
+            .footer-links { justify-content: flex-start; }
+        }
+        @media (max-width: 480px) {
+            .problem-grid { grid-template-columns: 1fr; }
+            .case-stats { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container inner">
+            <a href="#top" class="logo" aria-label="グケン株式会社">
+                <img src="https://guken.jp/wp-content/uploads/2024/12/g-logo2.png" alt="グケン株式会社">
+                <span class="brand">超営業<span class="accent">.</span></span>
+            </a>
+            <nav class="nav">
+                <a href="#problem">課題</a>
+                <a href="#service">提供内容</a>
+                <a href="#case">事例</a>
+                <a href="#philosophy">思想</a>
+                <a href="https://guken.jp/contact/" class="btn-cta-sm" target="_blank" rel="noopener">個別相談</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">中小企業の経営者・営業責任者へ</span>
+                    <h1>営業を「エースの匠」から、<br><span class="em">「構造による仕組み」</span>に。</h1>
+                    <p class="lead">
+                        案件はあるのに、受注率が安定しない。<br>
+                        その原因は、営業力ではなく <strong>"営業の仕組みの欠落"</strong> です。<br>
+                        超営業は、属人化した営業プロセスを再現性ある構造に設計し直す伴走支援。
+                    </p>
+                    <div class="cta-row">
+                        <a href="https://guken.jp/contact/" target="_blank" rel="noopener" class="btn btn-primary">個別相談を予約する（無料・30分）</a>
+                        <a href="#service" class="btn btn-secondary">提供内容を見る</a>
+                    </div>
+                    <p class="cta-note">※ 売上1億〜20億円規模の中小企業の社長・営業部長を対象としています。</p>
+                </div>
+
+                <aside class="hero-visual" aria-hidden="true">
+                    <h3>営業プロセスを"構造"に</h3>
+                    <div class="pipeline">
+                        <div class="pipeline-item"><span class="num">1</span>商談前：仮説と論点の設計</div>
+                        <div class="pipeline-item"><span class="num">2</span>商談中：意思決定構造の見える化</div>
+                        <div class="pipeline-item"><span class="num">3</span>商談後：次アクションの定義</div>
+                        <div class="pipeline-item muted"><span class="num">→</span>属人化していた判断を、組織の手順に</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Trust strip -->
+        <section class="trust">
+            <div class="container inner">
+                <div><strong>HOPES</strong> 事例で実証 ／ 中小企業 1億〜20億円規模に特化</div>
+                <div>営業を、個人依存から構造へ。</div>
+            </div>
+        </section>
+
+        <!-- Problem -->
+        <section id="problem" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-eyebrow">Problem</span>
+                    <h2>その営業組織、<br>「営業水道管」が詰まっていませんか？</h2>
+                    <p class="section-lead">案件は流れ込んでくる。けれど、出口で受注に変わらない。<br>多くの中小企業の営業現場で、共通して起きている "詰まり" が4つあります。</p>
+                </div>
+
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <div class="icon">!</div>
+                        <h3>案件は動かない、<br>でも理由がわからない</h3>
+                        <p>商談は重ねているのに、なぜ進まないのかが見えない。担当者の感覚に頼るしかない。</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">!</div>
+                        <h3>エース1人に売上が集中している</h3>
+                        <p>「あの人がいるから売れている」状態。属人化が進み、横展開できず再現もできない。</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">!</div>
+                        <h3>営業会議で結論が出ない</h3>
+                        <p>進捗報告で時間が溶ける。次の打ち手が決まらないまま、また来週同じ会議が始まる。</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="icon">!</div>
+                        <h3>受注が"再現"できない</h3>
+                        <p>たまたま決まる、たまたま落ちる。何が成約を分けたのか、組織として言語化できていない。</p>
+                    </div>
+                </div>
+
+                <p class="problem-summary">
+                    これは営業力の問題ではなく、<strong>営業の"構造"の問題</strong>です。
+                </p>
+            </div>
+        </section>
+
+        <!-- Change (Before / After) -->
+        <section id="change" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-eyebrow">After</span>
+                    <h2>導入後、営業組織はこう変わります。</h2>
+                    <p class="section-lead">エース個人の経験則を、組織の手順に。<br>"勘でやる営業" から "設計でやる営業" への移行です。</p>
+                </div>
+
+                <div class="change-grid">
+                    <div class="change-col before">
+                        <span class="change-tag">BEFORE</span>
+                        <h3>個人依存の営業</h3>
+                        <ul>
+                            <li>受注率が読めない</li>
+                            <li>商談の進捗が担当者の頭の中</li>
+                            <li>会議が "報告" で終わる</li>
+                            <li>再現性のない成約</li>
+                            <li>育成にも時間がかかる</li>
+                        </ul>
+                    </div>
+                    <div class="change-arrow" aria-hidden="true">→</div>
+                    <div class="change-col after">
+                        <span class="change-tag">AFTER</span>
+                        <h3>構造で勝つ営業</h3>
+                        <ul>
+                            <li>受注確度を数字で語れる</li>
+                            <li>商談の論点と判断基準が共有される</li>
+                            <li>会議で "次の一手" が決まる</li>
+                            <li>受注プロセスが再現できる</li>
+                            <li>新人が早く戦力になる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service -->
+        <section id="service" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-eyebrow">Service</span>
+                    <h2>超営業の伴走支援は、3つのステップで進みます。</h2>
+                    <p class="section-lead">"研修して終わり" ではなく、現場で動く構造を一緒に作り、定着させるところまで伴走します。</p>
+                </div>
+
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="step-num">01</div>
+                        <div class="step">DIAGNOSIS</div>
+                        <h3>営業構造の診断</h3>
+                        <p>商談プロセス・案件の詰まり・会議体・KPI を棚卸し、"水道管のどこが詰まっているか" を可視化します。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="step-num">02</div>
+                        <div class="step">DESIGN</div>
+                        <h3>再現可能な構造の設計</h3>
+                        <p>受注を生む判断基準・商談フロー・営業会議の型を、その会社固有の事業に合わせて設計します。</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="step-num">03</div>
+                        <div class="step">EMBED</div>
+                        <h3>現場への伴走と定着</h3>
+                        <p>実商談・営業会議に同席し、設計した構造が現場で動くまで一緒に運用。属人化に戻らない仕組みを残します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy -->
+        <section id="philosophy" class="philosophy">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-eyebrow">Philosophy</span>
+                    <h2>売らない営業が、いちばん売れる。</h2>
+                </div>
+                <blockquote>
+                    押す営業の時代は終わりました。<br>
+                    お客様が買いたくなる "意思決定の流れ" を、商談の中で一緒に設計する。<br>
+                    <span class="em">案件が自然に前へ進む状態</span>を作るのが、超営業の考える営業です。<br><br>
+                    だから私たちは、"営業力" を鍛えるのではなく、<br>
+                    <span class="em">営業の "構造"</span> を設計します。
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Case studies -->
+        <section id="case" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-eyebrow">Case Study</span>
+                    <h2>HOPES 事例：構造で営業が変わった企業</h2>
+                    <p class="section-lead">超営業の伴走支援を導入した企業が、属人化からどう抜け出したのか。<br>※ 数値・コメントは参考例です。実データは個別相談時にご紹介します。</p>
+                </div>
+
+                <div class="case-grid">
+                    <article class="case-card">
+                        <div class="case-meta">
+                            <span class="case-tag">製造業 / 売上8億円</span>
+                            <span class="case-tag">営業部員 6名</span>
+                        </div>
+                        <h3>エース1人依存から、<br>営業部全員が受注を作れる組織へ。</h3>
+                        <div class="case-stats">
+                            <div class="case-stat">
+                                <div class="num">+38%</div>
+                                <div class="label">受注率向上</div>
+                            </div>
+                            <div class="case-stat">
+                                <div class="num">2.4倍</div>
+                                <div class="label">エース外の受注件数</div>
+                            </div>
+                            <div class="case-stat">
+                                <div class="num">6ヶ月</div>
+                                <div class="label">定着までの期間</div>
+                            </div>
+                        </div>
+                        <p class="case-quote">商談がなぜ進むのか・なぜ止まるのかを、はじめて言葉にできた。会議が報告ではなく "次の一手" を決める場に変わったのが大きい。</p>
+                    </article>
+
+                    <article class="case-card">
+                        <div class="case-meta">
+                            <span class="case-tag">BtoBサービス / 売上15億円</span>
+                            <span class="case-tag">営業部員 12名</span>
+                        </div>
+                        <h3>"なぜか決まる/落ちる" 営業から、<br>受注プロセスが再現できる営業へ。</h3>
+                        <div class="case-stats">
+                            <div class="case-stat">
+                                <div class="num">+22%</div>
+                                <div class="label">予算達成率</div>
+                            </div>
+                            <div class="case-stat">
+                                <div class="num">−45%</div>
+                                <div class="label">商談リードタイム</div>
+                            </div>
+                            <div class="case-stat">
+                                <div class="num">3ヶ月</div>
+                                <div class="label">新人立ち上がり短縮</div>
+                            </div>
+                        </div>
+                        <p class="case-quote">研修を入れても定着しなかった営業の型が、構造として残った。新しいメンバーが入っても "どう動けばいいか" が共有資産になった。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mid CTA band -->
+        <section class="cta-band">
+            <div class="container inner">
+                <div>
+                    <h3>まずは、自社の営業構造を一度棚卸ししませんか？</h3>
+                    <p>無料の個別相談（30分）で、現状の "詰まり" を一緒に言語化します。</p>
+                </div>
+                <a href="https://guken.jp/contact/" target="_blank" rel="noopener" class="btn btn-primary btn-lg">個別相談を予約する</a>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="contact" class="cta-final">
+            <div class="container">
+                <h2>営業を、個人依存から構造へ。<br>その第一歩を、一緒に。</h2>
+                <p>
+                    属人化したまま走り続けるか、再現できる組織を作るか。<br>
+                    超営業は、決めた経営者・営業責任者の隣に立つ伴走支援です。
+                </p>
+                <div class="cta-final-row">
+                    <a href="https://guken.jp/contact/" target="_blank" rel="noopener" class="btn btn-on-dark btn-lg">個別相談を予約する（無料・30分）</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="inner">
+                <div>
+                    <a href="#top" class="logo" aria-label="グケン株式会社">
+                        <img src="https://guken.jp/wp-content/uploads/2024/12/g-logo2.png" alt="グケン株式会社">
+                        <span class="brand">グケン株式会社</span>
+                    </a>
+                    <p class="company-info">
+                        営業を、個人依存から構造へ。<br>
+                        中小企業の営業組織に、再現性を届ける伴走支援。
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="#problem">課題</a>
+                    <a href="#service">提供内容</a>
+                    <a href="#case">事例</a>
+                    <a href="#philosophy">思想</a>
+                    <a href="https://guken.jp/contact/" target="_blank" rel="noopener">お問い合わせ</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © グケン株式会社 All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

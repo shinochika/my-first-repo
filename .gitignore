@@ -1,0 +1,9 @@
+# cloned external repository (octocat sample) — not part of this project
+Hello-World/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
